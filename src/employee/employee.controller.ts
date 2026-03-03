@@ -9,13 +9,11 @@ export class EmployeeController {
   @Get()
   getAllEmployees(): any[] {
     this.logger.log('Getting users from service layer');
-    return [];
+    return this.employeeService.getAllEmployees();
   }
 
   @Get(':id')
   getOneEmployee(@Param('id', ParseIntPipe) id: number): object {
-    return {
-      userId: id,
-    };
+    return this.employeeService.getOneEmployee(id);
   }
 }
