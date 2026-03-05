@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { CreateEmployeeDto } from './DTO/EmployeeDto';
 
 @Injectable()
 export class EmployeeService {
@@ -14,5 +15,10 @@ export class EmployeeService {
       employeeId: id,
       userDate: '',
     };
+  }
+
+  createEmployee(employeeData: CreateEmployeeDto): object {
+    this.logger.log('creating started of employee');
+    return employeeData;
   }
 }

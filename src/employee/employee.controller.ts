@@ -1,5 +1,14 @@
-import { Controller, Get, Logger, Param, ParseIntPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Logger,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { EmployeeService } from './employee.service';
+import { CreateEmployeeDto } from './DTO/EmployeeDto';
 
 @Controller('employee')
 export class EmployeeController {
@@ -14,6 +23,13 @@ export class EmployeeController {
 
   @Get(':id')
   getOneEmployee(@Param('id', ParseIntPipe) id: number): object {
+    this.logger.log('get one employee from the service layer');
     return this.employeeService.getOneEmployee(id);
+  }
+
+  @Post()
+  createEmployee(@Body() employeeRequest: CreateEmployeeDto): object {
+    this.logger.log('created employee came from service');
+    return this.employeeService.createEmployee(employeeRequest);
   }
 }
